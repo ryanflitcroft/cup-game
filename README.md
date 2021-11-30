@@ -23,7 +23,7 @@ _should work like this:_
 1. One HTML element, representing the ball.
 
 1. Three text elements should exist:
-    * to represent correct clicks
+    * to represent correct clicks   
     * to represent incorrect clicks
     * to represent total clicks
 
