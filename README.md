@@ -1,25 +1,44 @@
-## The Golden Rule: 
+# CUP GAME
+_should work like this:_
 
-🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
+## HOW TO PLAY
 
-If you work on more than one feature at a time, you are guaranteed to multiply your bugs and your anxiety.
+* A player should guess under which 'cup' there exists a 'ball'.
 
-## Making a plan
+* A player must click a button which corresponds with the cup in which they believe the ball is currently under.
 
-1) **Make a drawing of your app. Simple "wireframes"**
-1) **Once you have a drawing, name the HTML elements you'll need to realize your vision**
-1) **For each HTML element ask: Why do I need this?** 
-1) **Once we know _why_ we need each element, think about how to implement the "Why" as a "How"**
-1) **Find all the 'events' (user clicks, form submit, on load etc) in your app. Ask one by one, "What happens when" for each of these events. Does any state change?**
-1) **Think about how to validate each of your features according to a Definition of Done**
-1) **Consider what features _depend_ on what other features. Use this dependency logic to figure out what order to complete tasks.**
+* When a button is clicked, the correct answer to which cup the ball is under is revealed.
 
-Additional considerations:
-- Ask: which of your HTML elements need to be hard coded, and which need to be dynamically generated?
-- Consider your data model. 
-  - What kinds of objects (i.e., Dogs, Friends, Todos, etc) will you need? 
-  - What are the key/value pairs? 
-  - What arrays might you need? 
-  - What needs to live in a persistence layer?
-- Is there some state we need to initialize?
-- Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+  * If the player guesses correctly, the text content of the element representing correct clicks is incremented.
+  * If the player guesses incorrectly, the text content of the element representing incorrect clicks is incremented.
+  * Upon each click, the text content of the element representing total clicks is incremented.
+  * The location of the ball is again concealed, and the player may continue to guess under which cup the ball exists.
+
+## HTML SETUP
+
+1. Three HTML elements should exist, each to represent one cup.
+
+1. Three button elements should exist, one for each cup.
+
+1. One HTML element, representing the ball.
+
+1. Three text elements should exist:
+    * to represent correct clicks
+    * to represent incorrect clicks
+    * to represent total clicks
+
+**each HTML element should be represented with an ID.**
+
+## JS SETUP
+
+1. Grab DOM elements by ID for each HTML element listed in *HTML SETUP*.
+
+1. Attach eventListener for 'click' to the each button element.
+    * when the button is clicked:
+        * a random number is generated to represent the cup under which the ball is located.
+        * the .style of the element under which the ball is currently located should be mutated in order to reveal the element representing the ball.
+        * a variable should exist for each the correct, incorrect, and total clicks:
+            * correct clicks value should be incremented if the button is clicked for the cup under which the ball is currently located.
+            * incorrect clicks value should be incremented if a button is clicked for a cup under which the ball is not currently located.
+            * total clicks value should be incremented for each click.
+        * the textContent of each the correct, incorrect, and total clicks elements should be mutated to equal the value of their corresponding variable.
