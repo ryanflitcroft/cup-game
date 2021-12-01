@@ -15,11 +15,14 @@ const button3 = document.getElementById('button3');
 const incorrect = document.getElementById('incorrect');
 const correct = document.getElementById('correct');
 const total = document.getElementById('total');
-// console.log(cup1, cup2, cup3, ball1, ball2, ball3, button1, button2, button3, incorrect, correct, total);
 
 // let state
 let ballLocation;
 let clicked;
+let scoreCorrect = 0;
+let scoreIncorrect = 0;
+let scoreTotal;
+const cupArray = [cup1, cup2, cup3];
 
 // set event listeners 
   // get user input
@@ -27,26 +30,32 @@ let clicked;
   // update DOM to reflect the new state
 
 button1.addEventListener('click', () => {
-    clicked = button1;
-    getRandom();
+    clicked = cup1;
+    getRandomItem(cupArray);
     revealReset();
+    // score();
+    handleGuess(clicked, ballLocation);
+    console.log(clicked);
 });
 
 button2.addEventListener('click', () => {
-    clicked = button2;
-    getRandom();
+    clicked = cup2;
+    getRandomItem(cupArray);
     revealReset();
+    // score();
+    handleGuess(clicked, ballLocation);
 });
 
 button3.addEventListener('click', () => {
-    clicked = button3;
-    getRandom();
+    clicked = cup3;
+    getRandomItem(cupArray);
     revealReset();
+    // score();
+    handleGuess(clicked, ballLocation);
 });
 
 
-function getRandom() {
-    const cupArray = [cup1, cup2, cup3];
+function getRandomItem(arr) {
     let i = Math.floor(Math.random() * cupArray.length);
     ballLocation = cupArray[i];
 }
@@ -55,9 +64,37 @@ function revealReset() {
     ballLocation.style.gridRow = '2 / span 2';
     setTimeout(() => {
         ballLocation.style.gridRow = '3 / span 2';
-    }, 500);
+    }, 750);
 }
 
-function score() {
+// function score() {
+//     if (clicked === ballLocation) {
+//         scoreCorrect++;
+//     } else if (clicked !== ballLocation) {
+//         scoreIncorrect++;
+//     }
+//     scoreTotal = scoreCorrect / (scoreIncorrect + scoreCorrect) * 100;
+//     correct.textContent = scoreCorrect;
+//     incorrect.textContent = scoreIncorrect;
+//     total.textContent = scoreTotal.toFixed(0);
+// }
 
+function handleGuess(clicked, ballLocation) {
+    if (clicked === ballLocation) {
+        scoreCorrect++;
+    } else if (clicked !== ballLocation) {
+        scoreIncorrect++;
+        animation();
+    }
+    scoreTotal = scoreCorrect / (scoreIncorrect + scoreCorrect) * 100;
+    correct.textContent = scoreCorrect;
+    incorrect.textContent = scoreIncorrect;
+    total.textContent = scoreTotal.toFixed(0);
+}
+
+function animation() {
+    clicked.classList.add('cup-animation');
+    setTimeout(() => {
+        clicked.classList.remove('cup-animation');
+    }, 500);
 }
