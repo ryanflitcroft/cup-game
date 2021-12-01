@@ -10,6 +10,7 @@ html, body {
     font-family: 'asphalt', sans-serif;
     font-weight: 800;
     font-style: normal;
+    letter-spacing: 0.25rem;
 }
 
 header {
@@ -191,5 +192,33 @@ h2 {
     }
     100% {
         transform: rotate(-5deg);
+    }
+}
+
+.ball-animation {
+    animation-name: bounce;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+
+@keyframes bounce {
+    20% {
+        background: green;
+        transform: translateY(20px) scale(.85);
+    }
+    40% {
+        background: green;
+        transform: translateY(-20px) scale(1);
+    }
+    60% {
+        background: green;
+        transform: translateY(15px) scale(.9);
+    }
+    80% {
+        background: green;
+        transform: translateY(-15px) scale(1.1);
+    }
+    100% {
+        transform: translateY(10px) scale(1);
     }
 }
